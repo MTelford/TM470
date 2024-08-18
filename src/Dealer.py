@@ -1,19 +1,21 @@
 
 import pygame
-from src import Card
+from Deck import Deck
+from Card import Card
 
 class Dealer:
     def __init__(self):
-        self.Cards = []
+        self.deck = Deck()
 
-    def getNextCard(self):
-        if self.Cards:
-            return self.Cards.pop(0)
+    def get_next_card(self):
+        if self.deck:
+            return self.deck
         else:
             return None
 
-    def setNextCard(self, card):
-        self.Cards.append(card)
+    def get_next_card(self, card):
+        return self.deck.get_next_card()
+
 
     def shuffleCards(self):
         import random
