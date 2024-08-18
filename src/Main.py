@@ -1,9 +1,21 @@
 import sys
 import pygame
 from pygame.locals import *
-from card_management import CardManager
+from src import Card, Dealer, Deck, Player, Scoreboard, UI, Sound, Networking
 from collections import deque
 import random
+
+dealer = Dealer()
+deck = Deck()
+player = Player()
+scoreboard = Scoreboard()
+ui = UI()
+sounds = Sound
+networking = Networking()
+
+
+
+
 
 pygame.init()
 
