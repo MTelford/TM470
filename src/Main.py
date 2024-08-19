@@ -1,7 +1,7 @@
 import sys
 import pygame
 from pygame.locals import *
-from Deck import Deck
+from Card import Card
 from collections import deque
 import random
 
@@ -38,7 +38,10 @@ DISPLAYSURF = pygame.display.set_mode((1280, 720))
 DISPLAYSURF.fill(GREEN)
 pygame.display.set_caption("Jack Change It")
 
-image = pygame.image.load("resources/cards/2C.png")
+CARDS_PNG_PATH = "resources/cards/2H.png"
+test_sprite = Card(CARDS_PNG_PATH, 620, 320)
+sprites = pygame.sprite.Group()
+sprites.add(test_sprite)
 
 # pass in DISPLAYSURF to update screen within card management class
 # card_management = CardManager(deque(card_deck), DISPLAYSURF)
@@ -55,7 +58,6 @@ while True:
             pygame.quit()
             sys.exit()
 
-    DISPLAYSURF.blit(image, (640, 360))
-
+    sprites.draw(DISPLAYSURF)
 
     pygame.display.update()
