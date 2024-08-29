@@ -19,6 +19,8 @@ class UI:
         self.ui_sprite_factory = SpriteFactory()
         self.ui_sprites = self.ui_sprite_factory.get_sprite_group()
         self.deck = Deck()
+        self.screen_center_x = self.screen_height // 2
+        self.screen_center_y = self.screen_width // 2
 
 
     def set_background(self, background):
@@ -39,17 +41,23 @@ class UI:
     def set_screen_height(self, screen_height):
         self.screen_height = screen_height
 
+    def get_screen_center(self):
+        return self.screen_center_x, self.screen_center_y
+
     def set_game_window_caption(self, caption):
         pygame.display.set_caption(caption)
 
     def set_fps(self, fps):
         self.FPS = fps
 
-    def draw_card(self, card, x, y):
+    def draw_card(self, card):
+
         if card in self.deck.get_deck():
+
             temp_card = Card(card)
+            # temp_card.rect.topleft = (temp_card.get_initial_x_pos(), temp_card.get_initial_y_pos())  # Position the sprite
+
             self.ui_sprites.add(temp_card)
-            temp_card.rect.topleft = (x, y)  # Position the sprite
             self.deck.remove_card(card)
             self.deck.lower_card_count_by_one()
             self.ui_sprites.draw(self.DISPLAY_SURF)

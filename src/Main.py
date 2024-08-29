@@ -2,6 +2,8 @@ import sys
 import pygame
 from pygame.locals import *
 from UI import UI
+from Card import Card
+from EventHandler import EventHandler
 
 ui = UI()
 ui.set_game_window_caption("Jack Change It")
@@ -16,6 +18,11 @@ DISPLAYSURF.fill(ui.GREEN)
 pygame.init()
 FPS = 60
 FramePerSec = pygame.time.Clock()
+#
+# two_clubs = Card("2C")
+# ui.draw_card("2C")
+
+event_handler = EventHandler()
 
 # Game loop
 
@@ -26,11 +33,8 @@ while True:
             pygame.quit()
             sys.exit()
 
-    # make the UI have access to the sprite factory so it can draw AND update the display surf, then just loop it from here
-    ui.draw_card("2C", 500, 500)
-    ui.draw_card("2H", 600, 500)
 
-
+        event_handler.handle_event(event, "2C")
 
 
     pygame.display.update()
