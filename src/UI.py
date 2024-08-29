@@ -1,6 +1,7 @@
 import pygame
 from SpriteFactory import SpriteFactory
 from Card import Card
+from Deck import Deck
 
 
 class UI:
@@ -17,6 +18,7 @@ class UI:
         self.frame_per_sec = pygame.time.Clock()
         self.ui_sprite_factory = SpriteFactory()
         self.ui_sprites = self.ui_sprite_factory.get_sprite_group()
+        self.deck = Deck()
 
 
     def set_background(self, background):
@@ -44,7 +46,12 @@ class UI:
         self.FPS = fps
 
     def draw_card(self, card, x, y):
-        temp_card = Card(card)
-        self.ui_sprites.add(temp_card)
-        temp_card.rect.topleft = (x, y)  # Position the sprite
-        self.ui_sprites.draw(self.DISPLAY_SURF)
+        if card in self.deck.get_deck():
+            temp_card = Card(card)
+            self.ui_sprites.add(temp_card)
+            temp_card.rect.topleft = (x, y)  # Position the sprite
+            self.deck.remove_card(card)
+            self.deck.lower_card_count_by_one()
+            self.ui_sprites.draw(self.DISPLAY_SURF)
+        else:
+            print("Deck needs reshuffled")

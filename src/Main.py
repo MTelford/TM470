@@ -2,7 +2,6 @@ import sys
 import pygame
 from pygame.locals import *
 from UI import UI
-from SpriteFactory import SpriteFactory
 
 ui = UI()
 ui.set_game_window_caption("Jack Change It")
@@ -28,8 +27,10 @@ while True:
             sys.exit()
 
     # make the UI have access to the sprite factory so it can draw AND update the display surf, then just loop it from here
-
     ui.draw_card("2C", 500, 500)
+    ui.draw_card("2H", 600, 500)
+
+
 
 
     pygame.display.update()
