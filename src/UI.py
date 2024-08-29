@@ -1,8 +1,6 @@
 import pygame
-
-
-def set_game_window_caption(caption):
-    pygame.display.set_caption(caption)
+from SpriteFactory import SpriteFactory
+from Card import Card
 
 
 class UI:
@@ -17,6 +15,8 @@ class UI:
         self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.FPS = 60
         self.frame_per_sec = pygame.time.Clock()
+        self.ui_sprite_factory = SpriteFactory()
+        self.ui_sprites = self.ui_sprite_factory.get_sprite_group()
 
 
     def set_background(self, background):
@@ -37,8 +37,14 @@ class UI:
     def set_screen_height(self, screen_height):
         self.screen_height = screen_height
 
+    def set_game_window_caption(self, caption):
+        pygame.display.set_caption(caption)
+
     def set_fps(self, fps):
         self.FPS = fps
 
     def draw_card(self, card, x, y):
-        card.rect.topleft = (x, y)  # Position the sprite
+        temp_card = Card(card)
+        self.ui_sprites.add(temp_card)
+        temp_card.rect.topleft = (x, y)  # Position the sprite
+        self.ui_sprites.draw(self.DISPLAY_SURF)

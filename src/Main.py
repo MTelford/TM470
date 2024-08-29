@@ -5,13 +5,14 @@ from UI import UI
 from SpriteFactory import SpriteFactory
 
 ui = UI()
+ui.set_game_window_caption("Jack Change It")
+
+# probably needs some call to update the screen in order for it to work
+ui.set_screen_width(2560)
+ui.set_screen_height(1440)
+
 DISPLAYSURF = ui.get_display_surf()
 DISPLAYSURF.fill(ui.GREEN)
-
-sprite_factory = SpriteFactory()
-two_hearts = sprite_factory.create_card_sprite("2H")
-sprites = sprite_factory.get_sprite_group()
-ui.draw_card(two_hearts, 960, 540)
 
 pygame.init()
 FPS = 60
@@ -26,7 +27,9 @@ while True:
             pygame.quit()
             sys.exit()
 
-    sprites.draw(DISPLAYSURF)
+    # make the UI have access to the sprite factory so it can draw AND update the display surf, then just loop it from here
+
+    ui.draw_card("2C", 500, 500)
 
 
     pygame.display.update()
