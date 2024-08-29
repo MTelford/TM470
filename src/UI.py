@@ -1,10 +1,44 @@
+import pygame
+
+
+def set_game_window_caption(caption):
+    pygame.display.set_caption(caption)
+
+
 class UI:
     def __init__(self):
-        self.TableColour = ''
-        self.BackGround = ''
+        self.screen_width = 1920
+        self.screen_height = 1080
+        self.BLUE = (0, 0, 255)
+        self.RED = (255, 0, 0)
+        self.GREEN = (0, 100, 0)
+        self.BLACK = (0, 0, 0)
+        self.WHITE = (255, 255, 255)
+        self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height))
+        self.FPS = 60
+        self.frame_per_sec = pygame.time.Clock()
 
-    def setTableColour(self, colour):
-        self.TableColour = colour
 
-    def setBackground(self, background):
-        self.BackGround = background
+    def set_background(self, background):
+        self.DISPLAY_SURF.fill(background)
+
+    def set_display_surf(self):
+        self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height))
+
+    def get_display_surf(self):
+        return self.DISPLAY_SURF
+
+    def change_display_surface_color(self, color):
+        self.DISPLAY_SURF.fill(self.GREEN)
+
+    def set_screen_width(self, screen_width):
+        self.screen_width = screen_width
+
+    def set_screen_height(self, screen_height):
+        self.screen_height = screen_height
+
+    def set_fps(self, fps):
+        self.FPS = fps
+
+    def draw_card(self, card, x, y):
+        card.rect.topleft = (x, y)  # Position the sprite
