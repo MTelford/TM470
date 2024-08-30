@@ -1,3 +1,5 @@
+from audioop import error
+
 import pygame
 from SpriteFactory import SpriteFactory
 from Card import Card
@@ -33,7 +35,13 @@ class UI:
         return self.DISPLAY_SURF
 
     def change_display_surface_color(self, color):
-        self.DISPLAY_SURF.fill(self.GREEN)
+        if color == "GREEN":
+            self.DISPLAY_SURF.fill(self.GREEN)
+        elif color == "BLUE":
+            self.DISPLAY_SURF.fill(self.BLUE)
+        else:
+            raise Exception("Invalid color passed to UI")
+        pygame.display.flip()
 
     def set_screen_width(self, screen_width):
         self.screen_width = screen_width
