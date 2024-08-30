@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 from UI import UI
 from EventHandler import EventHandler
+from Card import Card
 
 pygame.init()
 FPS = 60
@@ -12,6 +13,8 @@ ui = UI()
 ui.set_game_window_caption("Jack Change It")
 ui.change_display_surface_color("GREEN")
 
+two_hearts = Card("2H")
+event_handler = EventHandler(ui)
 
 
 while True:
@@ -22,3 +25,5 @@ while True:
             sys.exit()
 
     pygame.display.update()
+
+    event_handler.handle_event(event, two_hearts)

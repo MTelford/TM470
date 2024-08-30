@@ -4,8 +4,8 @@ from UI import UI
 
 
 class EventHandler:
-    def __init__(self):
-        self.ui = UI()
+    def __init__(self, ui):
+        self.ui = ui
 
     def handle_event(self, event, sprite=None):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -16,10 +16,9 @@ class EventHandler:
                 sprite.set_y_pos(pos[1])
                 self.ui.draw_card(sprite)
 
+        if event.type == pygame.MOUSEMOTION:
+            print("mouse moving")
 
-        # if event.type == pygame.MOUSEMOTION:
-        #     # print("mouse moving")
-        # #
-        # elif event.type == pygame.MOUSEBUTTONUP:
-        #     # self.dragging = False
-        #     # print("mouse release")
+        elif event.type == pygame.MOUSEBUTTONUP:
+            self.dragging = False
+            print("mouse release")
