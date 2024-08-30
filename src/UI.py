@@ -60,14 +60,18 @@ class UI:
 
     def draw_card(self, card):
 
-        if card in self.deck.get_deck():
+        # if card in self.deck.get_deck():
 
-            temp_card = Card(card)
-            # temp_card.rect.topleft = (temp_card.get_initial_x_pos(), temp_card.get_initial_y_pos())  # Position the sprite
+        temp_card = Card(card)
+        # pos = pygame.mouse.get_pos()
+        # print(pos)
+        temp_card.set_x_pos(560)
+        temp_card.set_y_pos(789)
 
-            self.ui_sprites.add(temp_card)
-            self.deck.remove_card(card)
-            self.deck.lower_card_count_by_one()
-            self.ui_sprites.draw(self.DISPLAY_SURF)
-        else:
-            print("Deck needs reshuffled")
+        self.ui_sprites.add(temp_card)
+        # self.deck.remove_card(card)
+        # self.deck.lower_card_count_by_one()
+        self.ui_sprites.draw(self.DISPLAY_SURF)
+        pygame.display.flip()
+        # else:
+        #     print("Deck needs reshuffled")

@@ -13,7 +13,6 @@ ui = UI()
 ui.set_game_window_caption("Jack Change It")
 ui.change_display_surface_color("GREEN")
 
-two_hearts = Card("2H")
 event_handler = EventHandler(ui)
 
 
@@ -26,4 +25,4 @@ while True:
 
     pygame.display.update()
 
-    event_handler.handle_event(event, two_hearts)
+    event_handler.handle_event(event, "2H")
