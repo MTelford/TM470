@@ -1,17 +1,15 @@
 import pygame
-from UI import UI
-
 
 
 class EventHandler:
     def __init__(self, ui):
         self.ui = ui
     # only handles cards right now
-    def handle_event(self, event, sprite=None):
+    def handle_event(self, event, card):
         if event.type == pygame.MOUSEBUTTONDOWN:
             print("mouse click")
-            if sprite is not None:
-                self.ui.draw_card(sprite)
+            if card is not None:
+                self.ui.draw_card(card)
 
         # if event.type == pygame.MOUSEMOTION:
         #     print("mouse moving")

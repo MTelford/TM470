@@ -1,5 +1,3 @@
-from audioop import error
-
 import pygame
 from SpriteFactory import SpriteFactory
 from Card import Card
@@ -59,17 +57,26 @@ class UI:
 
     def draw_card(self, card):
 
-        if card in self.dealer.get_deck().get_cards():
+        # don't need to check cards, just make sure to keep track of them
 
-            temp_card = Card(card)
-            pos = pygame.mouse.get_pos()
-            temp_card.set_x_pos(pos[0])
-            temp_card.set_y_pos(pos[1])
+        sprite_card = Card(card)
+        mouse_pos = pygame.mouse.get_pos()
+        sprite_card.set_x_pos(mouse_pos[0])
+        sprite_card.set_y_pos(mouse_pos[1])
 
-            self.ui_sprites.add(temp_card)
-            self.dealer.request_card_removal(card)
-            self.dealer.deck.lower_card_count_by_one()
+        player1_cards = self.dealer.get_player1_cards()
+        player2_cards = self.dealer.get_player2_cards()
+        if card in player1_cards:
+            self.dealer.player1.remove_card(card)
+        elif card in player2_cards:
+            self.dealer.player2.remove_card(card)
+
+
+            self.ui_sprites.add(sprite_card)
+            # self.dealer.request_card_removal(card)
+            # self.dealer.deck.lower_card_count_by_one()
             self.ui_sprites.draw(self.DISPLAY_SURF)
             pygame.display.flip()
         else:
-            print("Deck needs reshuffled")
+            raise Exception("card not in either players cards")
+
