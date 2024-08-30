@@ -2,7 +2,7 @@
 
 class Deck:
     def __init__(self):
-        self.deck =      ["2C", "2S", "2D", "2H", "3C", "3S", "3D", "3H",
+        self.cards =      ["2C", "2S", "2D", "2H", "3C", "3S", "3D", "3H",
                           "4C", "4S", "4D", "4H", "5C", "5S", "5D", "5H",
                           "6C", "6S", "6D", "6H", "7C", "7S", "7D", "7H",
                           "8C", "8S", "8D", "8H", "9C", "9S", "9D", "9H",
@@ -12,21 +12,21 @@ class Deck:
         self.card_count = 52
 
     def get_next_card(self):
-        if self.deck:
+        if self.cards:
             self.card_count -= 1
-            return self.deck.pop()
+            return self.cards.pop()
         else:
             return None
 
     def remove_card(self, card):
-        self.deck.remove(card)
+        self.cards.remove(card)
 
     def add_card(self, card):
-        self.deck.append(card)
+        self.cards.append(card)
         self.card_count += 1
 
     def get_deck(self):
-        return self.deck
+        return self.cards
 
     def lower_card_count_by_one(self):
         self.card_count -= 1

@@ -3,11 +3,11 @@ from audioop import error
 import pygame
 from SpriteFactory import SpriteFactory
 from Card import Card
-from Deck import Deck
 
 
 class UI:
-    def __init__(self):
+    def __init__(self, dealer):
+        self.dealer = dealer
         self.screen_width = 1920
         self.screen_height = 1080
         self.BLUE = (0, 0, 255)
@@ -20,7 +20,6 @@ class UI:
         self.frame_per_sec = pygame.time.Clock()
         self.ui_sprite_factory = SpriteFactory()
         self.ui_sprites = self.ui_sprite_factory.get_sprite_group()
-        self.deck = Deck()
         self.screen_center_x = self.screen_height // 2
         self.screen_center_y = self.screen_width // 2
 
@@ -60,7 +59,7 @@ class UI:
 
     def draw_card(self, card):
 
-        if card in self.deck.get_deck():
+        if card in self.dealer.get_deck().get_deck():
 
             temp_card = Card(card)
             pos = pygame.mouse.get_pos()
@@ -68,8 +67,8 @@ class UI:
             temp_card.set_y_pos(pos[1])
 
             self.ui_sprites.add(temp_card)
-            self.deck.remove_card(card)
-            self.deck.lower_card_count_by_one()
+            self.dealer.request_card_removal(card)
+            self.dealer.deck.lower_card_count_by_one()
             self.ui_sprites.draw(self.DISPLAY_SURF)
             pygame.display.flip()
         else:

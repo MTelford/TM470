@@ -1,16 +1,18 @@
 class Player:
     def __init__(self, name='', location=''):
-        self.Name = name
-        self.Location = location
+        self.name = name
+        self.location = location
+        self.player_cards = None
 
-    def getName(self):
-        return self.Name
 
-    def getLocation(self):
-        return self.Location
+    def get_name(self):
+        return self.location
 
-    def setName(self, name):
-        self.Name = name
+    def get_location(self):
+        return self.location
 
-    def setLocation(self, location):
-        self.Location = location
+    def set_name(self, name):
+        self.name = name
+
+    def set_location(self, location):
+        self.location = location
