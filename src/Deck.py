@@ -11,6 +11,7 @@ class Deck:
                           "AC", "AS", "AD", "AH"]
         self.card_count = 52
 
+
     def get_next_card(self):
         if self.cards:
             self.card_count -= 1
@@ -25,8 +26,11 @@ class Deck:
         self.cards.append(card)
         self.card_count += 1
 
-    def get_deck(self):
+    def get_cards(self):
         return self.cards
 
     def lower_card_count_by_one(self):
         self.card_count -= 1
+
+    def set_cards(self, shuffled_cards):
+        self.cards = shuffled_cards

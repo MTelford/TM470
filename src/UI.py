@@ -59,7 +59,7 @@ class UI:
 
     def draw_card(self, card):
 
-        if card in self.dealer.get_deck().get_deck():
+        if card in self.dealer.get_deck().get_cards():
 
             temp_card = Card(card)
             pos = pygame.mouse.get_pos()
