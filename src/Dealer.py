@@ -9,7 +9,7 @@ class Dealer:
     def get_deck(self):
         return self.deck
 
-    def get_next_card(self, card):
+    def get_next_card(self):
         return self.deck.get_next_card()
 
     def shuffle_cards(self):
