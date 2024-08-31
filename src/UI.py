@@ -20,8 +20,8 @@ class UI:
         self.ui_sprites = self.ui_sprite_factory.get_sprite_group()
         self.screen_center_x = self.screen_height // 2
         self.screen_center_y = self.screen_width // 2
-        self.STARTING_CARD_X_POS = [400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800]
-        self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+        self.STARTING_CARD_X_POS = [400, 500, 600, 700, 800, 900, 1000]
+        self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900]
 
 
     def set_background(self, background):
@@ -57,15 +57,23 @@ class UI:
     def set_fps(self, fps):
         self.FPS = fps
 
+    def update_display(self, sprite_card):
+
+        self.ui_sprites.add(sprite_card)
+        self.ui_sprites.draw(self.DISPLAY_SURF)
+        pygame.display.flip()
+
     def draw_card(self, card, starting_cards=False, counter=0):
 
-        # don't need to check cards, just make sure to keep track of them
         print("drawing")
         sprite_card = Card(card)
+        drawn_cards = []
 
         if starting_cards:
             sprite_card.set_x_pos(self.STARTING_CARD_X_POS[counter])
             sprite_card.set_y_pos(self.STARTING_CARD_Y_POS[counter])
+            if card not in drawn_cards:
+                self.update_display(sprite_card)
         else:
             mouse_pos = pygame.mouse.get_pos()
             sprite_card.set_x_pos(mouse_pos[0])
@@ -77,20 +85,25 @@ class UI:
 
             if card in player1_cards:
                 self.dealer.player1.remove_card(card)
+                drawn_cards.append(card)
+                print("removing from player 1")
+                self.update_display(sprite_card)
+                self.draw_starting_cards()
+
             elif card in player2_cards:
                 self.dealer.player2.remove_card(card)
+                print("removing from player 2")
+                self.update_display(sprite_card)
             else:
                 raise Exception("card not in either players cards")
 
-        self.ui_sprites.add(sprite_card)
-        self.ui_sprites.draw(self.DISPLAY_SURF)
-        pygame.display.flip()
-
     def draw_starting_cards(self):
-        in_play_cards = self.dealer.get_in_play_cards()
+        in_play_cards = self.dealer.get_player1_cards()
         counter = 0
         for card in in_play_cards:
             self.draw_card(card, True, counter)
             counter += 1
+
+
 
 

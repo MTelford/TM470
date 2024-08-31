@@ -34,7 +34,7 @@ while True:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             print("Mouse clicked!")
-            # event_handler.handle_event(event, player1.get_player_cards()[0])
+            event_handler.handle_event(event, player1.get_player_cards()[0])
 
         if event.type == pygame.MOUSEBUTTONUP:
             print("Mouse released!")

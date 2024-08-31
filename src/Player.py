@@ -6,7 +6,6 @@ class Player:
         self.name = name
         self.location = location
         self.player_cards = []
-        # self.dealer = dealer
 
 
     def get_name(self):
