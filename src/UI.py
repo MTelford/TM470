@@ -58,7 +58,7 @@ class UI:
     def draw_card(self, card):
 
         # don't need to check cards, just make sure to keep track of them
-
+        print("drawing")
         sprite_card = Card(card)
         mouse_pos = pygame.mouse.get_pos()
         sprite_card.set_x_pos(mouse_pos[0])
@@ -70,13 +70,11 @@ class UI:
             self.dealer.player1.remove_card(card)
         elif card in player2_cards:
             self.dealer.player2.remove_card(card)
-
-
-            self.ui_sprites.add(sprite_card)
-            # self.dealer.request_card_removal(card)
-            # self.dealer.deck.lower_card_count_by_one()
-            self.ui_sprites.draw(self.DISPLAY_SURF)
-            pygame.display.flip()
         else:
             raise Exception("card not in either players cards")
+
+        self.ui_sprites.add(sprite_card)
+        self.ui_sprites.draw(self.DISPLAY_SURF)
+        pygame.display.flip()
+
 

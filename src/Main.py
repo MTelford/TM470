@@ -22,9 +22,7 @@ ui.change_display_surface_color("GREEN")
 
 event_handler = EventHandler(ui)
 
-test = player1.get_player_cards()[0]
 
-clicked = False
 while True:
     for event in pygame.event.get():
 
@@ -33,14 +31,12 @@ while True:
             sys.exit()
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if not clicked:
-                print("Mouse clicked!")
-                clicked = True
-                event_handler.handle_event(event, player1.get_player_cards()[0])
+            print("Mouse clicked!")
+            event_handler.handle_event(event, player1.get_player_cards()[0])
 
         if event.type == pygame.MOUSEBUTTONUP:
-            clicked = False
+            print("mouse up")
 
     pygame.display.update()
 
-    event_handler.handle_event(event, player1.get_player_cards()[0])
+    # event_handler.handle_event(event, player1.get_player_cards()[0])
