@@ -16,9 +16,11 @@ player2 = Player()
 dealer = Dealer(player1, player2)
 dealer.give_players_starting_cards()
 
+
 ui = UI(dealer)
 ui.set_game_window_caption("Jack Change It")
 ui.change_display_surface_color("GREEN")
+ui.draw_starting_cards()
 
 event_handler = EventHandler(ui)
 
@@ -32,11 +34,10 @@ while True:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             print("Mouse clicked!")
-            event_handler.handle_event(event, player1.get_player_cards()[0])
+            # event_handler.handle_event(event, player1.get_player_cards()[0])
 
         if event.type == pygame.MOUSEBUTTONUP:
-            print("mouse up")
+            print("Mouse released!")
 
     pygame.display.update()
 
-    # event_handler.handle_event(event, player1.get_player_cards()[0])

@@ -7,6 +7,7 @@ class Dealer:
         self.deck = Deck()
         self.player1 = player1
         self.player2 = player2
+        self.in_play_cards = self.give_players_starting_cards()
 
 
     def get_deck(self):
@@ -25,9 +26,13 @@ class Dealer:
             cards.append(self.deck.get_next_card())
         self.player1.set_player_cards(cards[0:7])
         self.player2.set_player_cards(cards[7:14])
+        return cards
 
     def get_player1_cards(self):
         return self.player1.get_player_cards()
 
     def get_player2_cards(self):
         return self.player2.get_player_cards()
+
+    def get_in_play_cards(self):
+        return self.in_play_cards
