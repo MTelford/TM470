@@ -22,7 +22,7 @@ class Dealer:
 
     def give_players_starting_cards(self):
         cards = []
-        for i in range (0,15):
+        for i in range (0,14):
             cards.append(self.deck.get_next_card())
         self.player1.set_player_cards(cards[0:7])
         self.player2.set_player_cards(cards[7:14])

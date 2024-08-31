@@ -20,8 +20,8 @@ class UI:
         self.ui_sprites = self.ui_sprite_factory.get_sprite_group()
         self.screen_center_x = self.screen_height // 2
         self.screen_center_y = self.screen_width // 2
-        self.STARTING_CARD_X_POS = [500, 600, 700, 800, 900, 1000, 1100, 500, 600, 700, 800, 900, 1000, 1100, 1200]
-        self.STARTING_CARD_Y_POS = [500, 600, 700, 800, 900, 1000, 1100, 500, 600, 700, 800, 900, 1000, 1100, 1200]
+        self.STARTING_CARD_X_POS = [400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800]
+        self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
 
 
     def set_background(self, background):
@@ -65,7 +65,7 @@ class UI:
 
         if starting_cards:
             sprite_card.set_x_pos(self.STARTING_CARD_X_POS[counter])
-            sprite_card.set_y_pos(self.STARTING_CARD_X_POS[counter])
+            sprite_card.set_y_pos(self.STARTING_CARD_Y_POS[counter])
         else:
             mouse_pos = pygame.mouse.get_pos()
             sprite_card.set_x_pos(mouse_pos[0])
