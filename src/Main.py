@@ -6,6 +6,7 @@ from EventHandler import EventHandler
 from Dealer import Dealer
 from Player import Player
 
+
 pygame.init()
 FPS = 60
 FramePerSec = pygame.time.Clock()
