@@ -36,7 +36,14 @@ while True:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             print("Mouse clicked!")
-            event_handler.handle_event(event, player1.get_player_cards()[0])
+            try:
+                event_handler.handle_event(event, player1.get_player_cards()[0])
+            except IndexError:
+                print("Dealing more cards!")
+                dealer.give_players_starting_cards()
+                event_handler.handle_event(event, player1.get_player_cards()[0])
+
+
 
         if event.type == pygame.MOUSEBUTTONUP:
             print("Mouse released!")

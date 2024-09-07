@@ -31,10 +31,9 @@ class Deck:
             return None
 
     def remove_card(self, card):
-        # for some reason, 2 different cards are being passed in
         print(card)
-        if card in self.cards:
-            self.cards.remove(card)
+        if card in self.game_cards:
+            self.game_cards.remove(card)
 
     def add_card(self, card):
         self.cards.append(card)
