@@ -1,6 +1,7 @@
 import pygame
 from SpriteFactory import SpriteFactory
 from Card import Card
+from src.Dealer import Dealer
 
 
 class UI:
@@ -13,13 +14,12 @@ class UI:
         self.GREEN = (0, 100, 0)
         self.BLACK = (0, 0, 0)
         self.WHITE = (255, 255, 255)
-        self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height))
+        self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.FULLSCREEN)
         self.FPS = 60
         self.frame_per_sec = pygame.time.Clock()
         self.ui_sprite_factory = SpriteFactory()
         self.ui_sprites = None
-        self.screen_center_x = self.screen_height // 2
-        self.screen_center_y = self.screen_width // 2
+        self.screen_center = self.DISPLAY_SURF.get_rect().center
         self.STARTING_CARD_X_POS = [400, 500, 600, 700, 800, 900, 1000]
         self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900]
 
@@ -48,9 +48,6 @@ class UI:
     def set_screen_height(self, screen_height):
         self.screen_height = screen_height
 
-    def get_screen_center(self):
-        return self.screen_center_x, self.screen_center_y
-
     def set_game_window_caption(self, caption):
         pygame.display.set_caption(caption)
 
@@ -74,9 +71,11 @@ class UI:
             self.ui_sprites = self.ui_sprite_factory.get_sprite_group("player1_starting_cards")
             self.update_display(sprite_card)
         else:
-            mouse_pos = pygame.mouse.get_pos()
-            sprite_card.set_x_pos(mouse_pos[0])
-            sprite_card.set_y_pos(mouse_pos[1])
+            screen_center_x = self.screen_center[0]
+            screen_center_y = self.screen_center[1]
+
+            sprite_card.set_x_pos(screen_center_x)
+            sprite_card.set_y_pos(screen_center_y)
 
             player1_cards = self.dealer.get_player1_cards()
             player2_cards = self.dealer.get_player2_cards()
@@ -104,7 +103,3 @@ class UI:
         for card in in_play_cards:
             self.draw_card(card, True, counter)
             counter += 1
-
-
-
-
