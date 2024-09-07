@@ -1,7 +1,6 @@
 import pygame
 from SpriteFactory import SpriteFactory
 from Card import Card
-from src.Dealer import Dealer
 
 
 class UI:
@@ -22,6 +21,7 @@ class UI:
         self.screen_center = self.DISPLAY_SURF.get_rect().center
         self.STARTING_CARD_X_POS = [400, 500, 600, 700, 800, 900, 1000]
         self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900]
+        self.first_card = True
 
 
     def set_background(self, background):
@@ -71,8 +71,15 @@ class UI:
             self.ui_sprites = self.ui_sprite_factory.get_sprite_group("player1_starting_cards")
             self.update_display(sprite_card)
         else:
-            screen_center_x = self.screen_center[0]
-            screen_center_y = self.screen_center[1]
+            if self.first_card:
+                screen_center_x = self.screen_center[0] - 25
+                screen_center_y = self.screen_center[1] - 25
+                self.first_card = False
+            else:
+                screen_center_x = self.screen_center[0]
+                screen_center_y = self.screen_center[1]
+
+
 
             sprite_card.set_x_pos(screen_center_x)
             sprite_card.set_y_pos(screen_center_y)
