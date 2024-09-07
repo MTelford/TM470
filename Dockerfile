@@ -18,4 +18,4 @@ EXPOSE 80
 ENV NAME JackChangeIt
 
 # Run app.py when the container launches
-CMD ["python3", "Main.py"]
+CMD ["python3", "WebServer.py"]
