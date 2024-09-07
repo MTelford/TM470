@@ -120,5 +120,11 @@ class UI:
             counter += 1
 
     def draw_opponent_cards(self):
+        opponent_card = Card(self.opponent_card)
+        opponent_card_x_pos = 400
+        opponent_card.set_x_pos(opponent_card_x_pos)
+        opponent_card.set_y_pos(50)
         for i in range(0, 7):
-            self.update_display(Card(self.opponent_card))
+            opponent_card.set_x_pos(opponent_card_x_pos)
+            self.update_display(opponent_card)
+            opponent_card_x_pos += 100
