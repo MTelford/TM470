@@ -21,6 +21,8 @@ class Dealer:
         self.deck.set_cards(random.shuffle(current_cards))
 
     def give_players_starting_cards(self):
+        if not self.deck.game_cards:
+            self.deck.game_cards = self.deck.tracking_cards.copy()
         cards = []
         for i in range (0,14):
             card = self.deck.get_next_card()
