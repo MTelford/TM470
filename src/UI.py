@@ -24,6 +24,7 @@ class UI:
         self.first_card = True
         self.played_cards = []
         self.played_card_index = -1
+        self.opponent_card = "card-back2"
 
 
     def set_background(self, background):
