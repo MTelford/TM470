@@ -104,6 +104,7 @@ class UI:
                 self.played_card_index += 1
                 self.draw_starting_cards()
                 self.update_display(sprite_card)
+                self.draw_opponent_cards()
             elif card in player2_cards:
                 self.dealer.player2.remove_card(card)
                 print("removing from player 2")
@@ -118,5 +119,6 @@ class UI:
             self.draw_card(card, True, counter)
             counter += 1
 
-    def draw_played_card(self):
-        self.draw_card(self.played_card)
+    def draw_opponent_cards(self):
+        for i in range(0, 7):
+            self.update_display(Card(self.opponent_card))

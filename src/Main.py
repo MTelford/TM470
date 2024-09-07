@@ -22,6 +22,7 @@ ui = UI(dealer)
 ui.set_game_window_caption("Jack Change It")
 ui.change_display_surface_color("GREEN")
 ui.draw_starting_cards()
+ui.draw_opponent_cards()
 
 event_handler = EventHandler(ui)
 
