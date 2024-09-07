@@ -23,7 +23,7 @@ class UI:
         self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900]
         self.first_card = True
         self.played_cards = []
-        self.played_card_index = 0
+        self.played_card_index = -1
 
 
     def set_background(self, background):
@@ -99,7 +99,8 @@ class UI:
                     played_card_sprite.set_x_pos(self.screen_center[0] - 25)
                     played_card_sprite.set_y_pos(self.screen_center[1] - 25)
                     self.update_display(played_card_sprite)
-                self.first_card = False 
+                self.first_card = False
+                self.played_card_index += 1
                 self.draw_starting_cards()
                 self.update_display(sprite_card)
             elif card in player2_cards:
