@@ -22,6 +22,8 @@ class UI:
         self.STARTING_CARD_X_POS = [400, 500, 600, 700, 800, 900, 1000]
         self.STARTING_CARD_Y_POS = [900, 900, 900, 900, 900, 900, 900]
         self.first_card = True
+        self.played_cards = []
+        self.played_card_index = 0
 
 
     def set_background(self, background):
@@ -79,24 +81,27 @@ class UI:
                 screen_center_x = self.screen_center[0]
                 screen_center_y = self.screen_center[1]
 
-
-
             sprite_card.set_x_pos(screen_center_x)
             sprite_card.set_y_pos(screen_center_y)
 
             player1_cards = self.dealer.get_player1_cards()
             player2_cards = self.dealer.get_player2_cards()
 
-
             if card in player1_cards:
                 self.dealer.player1.remove_card(card)
                 print("removing from player 1")
+                self.played_cards.append(card)
                 self.ui_sprites = self.ui_sprite_factory.get_sprite_group("player1_cards")
                 self.ui_sprite_factory.get_sprite_group("player1_starting_cards").empty()
                 self.change_display_surface_color("GREEN")
+                if not self.first_card:
+                    played_card_sprite = Card(self.played_cards[self.played_card_index])
+                    played_card_sprite.set_x_pos(self.screen_center[0] - 25)
+                    played_card_sprite.set_y_pos(self.screen_center[1] - 25)
+                    self.update_display(played_card_sprite)
+                self.first_card = False 
                 self.draw_starting_cards()
                 self.update_display(sprite_card)
-
             elif card in player2_cards:
                 self.dealer.player2.remove_card(card)
                 print("removing from player 2")
@@ -110,3 +115,6 @@ class UI:
         for card in in_play_cards:
             self.draw_card(card, True, counter)
             counter += 1
+
+    def draw_played_card(self):
+        self.draw_card(self.played_card)
