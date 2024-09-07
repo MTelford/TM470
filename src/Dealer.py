@@ -20,6 +20,7 @@ class Dealer:
         current_cards = self.deck.get_cards()
         self.deck.set_cards(random.shuffle(current_cards))
 
+    # currently player 2 cards aren't taken into account when shuffling
     def give_players_starting_cards(self):
         if not self.deck.game_cards:
             self.deck.game_cards = self.deck.tracking_cards.copy()

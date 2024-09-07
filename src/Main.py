@@ -43,10 +43,7 @@ while True:
                 dealer.give_players_starting_cards()
                 event_handler.handle_event(event, player1.get_player_cards()[0])
 
-
-
         if event.type == pygame.MOUSEBUTTONUP:
             print("Mouse released!")
 
     pygame.display.update()
-
