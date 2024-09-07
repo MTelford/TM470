@@ -14,7 +14,7 @@ class UI:
         self.GREEN = (0, 100, 0)
         self.BLACK = (0, 0, 0)
         self.WHITE = (255, 255, 255)
-        self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.FULLSCREEN)
+        self.DISPLAY_SURF = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.FPS = 60
         self.frame_per_sec = pygame.time.Clock()
         self.ui_sprite_factory = SpriteFactory()
