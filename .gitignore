@@ -3,4 +3,5 @@ idea/
 env/
 src/__pycache__
 tests/__pycache__
+src/build
 dev_resources/notes
