@@ -1,21 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jack-change-it-1.0.0
-  labels:
-    app: jack-change-it-1.0.0
+  name: jci
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: jack-change-it-1.0.0
+      app: jci
   template:
     metadata:
       labels:
-        app: jack-change-it-1.0.0
+        app: jci
     spec:
       containers:
-      - name: jack-change-it-1.0.0
-        image: jack-change-it-1.0.0
+      - name: jci
+        image: jci:latest
+        imagePullPolicy: Never
         ports:
-        - containerPort: 8000
+        - containerPort: 5000

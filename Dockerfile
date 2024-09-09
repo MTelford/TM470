@@ -18,6 +18,4 @@ COPY requirements.txt /app
 RUN pip3 install -r requirements.txt
 RUN pygbag --build main.py
 
-EXPOSE 8000
-
 CMD ["python3", "WebServer.py"]
