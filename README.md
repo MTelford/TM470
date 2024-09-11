@@ -59,7 +59,10 @@ Pull necessary dependencies from requirements.txt:
 At this stage, the project can be started locally either by running main.py from the CLI, or running main.py for an IDE such as PyCharm  
 `python3 main.py`  
 
-Addtionally, we can dockerize the application and run it as a container using the follow commands from the project root:  
+Addtionally, we can dockerize the application and run it as a container. First we need to ensure we are using minikubes docker daemon by doing:
+`eval $(minikube docker-env)`  
+
+Then we can dockerize the application using the follow commands from the project root:  
 
 `docker build -t <name> .` where name can be whatever you would like to call it. I generally use jci for simplicity.  
 `docker run -p 8000:5000 <name>` here we map port 8000 on the host to port 5000 within the container which is the standard port for the Flask web server.  
@@ -73,7 +76,19 @@ From here, we should be able to access the containerized application on:
 Finally, to run the application in k8s, we can use the following commands:  
 
 `minikube start`  
-`minikube kubectl -- get po -A`  
+`minikube kubectl -- get po -A` - this should prompt us to install the appropriate version of kubectl required to interact with the k8s cluster  
+`kubectl apply -f deployment.yaml`  
+`kubectl expose deployment <name> --type=NodePort --port=5000`  
+
+From here we should be able to interact with the containerized application in the k8s cluster by doing the following:  
+`minikube ip`  
+`kubectl get services`  
+
+Look for the k8s service that was created for your image name and there will be a cluster port associated in the range 30000-32767. These two network components constitute the socket for the application on the localhost. For example:  
+`192.168.49.2:31789`  
+
+Going to this address in the host machines web browser will allow us to access the game as a containerized application that is orchestrated by k8s.
+
 
 
    
