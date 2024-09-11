@@ -60,7 +60,8 @@ At this stage, the project can be started locally either by running main.py from
 
 `python3 main.py`  
 
-Addtionally, we can dockerize the application and run it as a container. First we need to ensure we are using minikubes docker daemon by doing:
+Addtionally, we can dockerize the application and run it as a container. First we need to ensure we are using minikubes docker daemon by doing:  
+
 `eval $(minikube docker-env)`  
 
 Then we can dockerize the application using the follow commands from the project root:  
