@@ -56,7 +56,7 @@ Pull necessary dependencies from requirements.txt:
 `pip install -r requirements.txt`  
 
 
-At this stage, the project can be started locally either by running main.py from the CLI, or running main.py from an IDE such as PyCharm  
+At this stage, the project can be started locally either by running main.py from the CLI, or running main.py from an IDE such as PyCharm:  
 
 `python3 main.py`  
 
