@@ -91,7 +91,7 @@ From here we should be able to interact with the containerized application in th
 Look for the k8s service that was created for your image name and there will be a cluster port associated in the range 30000-32767. These two network components constitute the socket for the application on the localhost. For example:  
 `192.168.49.2:31789`  
 
-Going to this address in the host machines web browser will allow us to access the game as a containerized application that is orchestrated by k8s.
+Going to this address on the host machines web browser will allow us to access the game as a containerized application that is orchestrated by k8s.
 
 
 
