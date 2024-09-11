@@ -1,0 +1,13 @@
+# placeholder for future use
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jack-change-it-1.0.0-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    app: jack-change-it-1.0.0

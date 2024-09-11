@@ -1,69 +1,43 @@
-
-import pygame
+import random
 from Deck import Deck
-from Card import Card
+
 
 class Dealer:
-    def __init__(self):
+    def __init__(self, player1, player2):
         self.deck = Deck()
+        self.player1 = player1
+        self.player2 = player2
+        self.in_play_cards = self.give_players_starting_cards()
+
+
+    def get_deck(self):
+        return self.deck
 
     def get_next_card(self):
-        if self.deck:
-            return self.deck
-        else:
-            return None
-
-    def get_next_card(self, card):
         return self.deck.get_next_card()
 
+    def shuffle_cards(self):
+        current_cards = self.deck.get_cards()
+        self.deck.set_cards(random.shuffle(current_cards))
 
-    def shuffleCards(self):
-        import random
-        random.shuffle(self.Cards)
+    # currently player 2 cards aren't taken into account when shuffling
+    def give_players_starting_cards(self):
+        if not self.deck.game_cards:
+            self.deck.game_cards = self.deck.tracking_cards.copy()
+        cards = []
+        for i in range (0,14):
+            card = self.deck.get_next_card()
+            cards.append(card)
+            self.deck.remove_card(card)
+        self.player1.set_player_cards(cards[0:7])
+        self.player2.set_player_cards(cards[7:14])
+        return cards
 
-        """responsible for various card management features
-                such as updating community card, giving players new cards etc"""
+    def get_player1_cards(self):
+        return self.player1.get_player_cards()
 
-        def __init__(self, game_deck, DISPLAYSURF):
-            self.game_deck = game_deck
-            self.DISPLAYSURF = DISPLAYSURF
-            self.community_card = None
+    def get_player2_cards(self):
+        return self.player2.get_player_cards()
 
-        def get_next_card(self):
-            # gets first card from shuffled deck
-            return Card(self.game_deck.pop())
-
-        def place_sprite(self, new_card, xpos, ypos):
-            # positions new card
-            new_card.rect.x = xpos
-            new_card.rect.y = ypos
-
-            # put card  onto the screen
-            self.DISPLAYSURF.blit(new_card.image, new_card.rect)
-            pygame.display.update()
-
-        def update_community_card(self):
-            # gets first card from shuffled deck and creates card object
-            next_card = self.get_next_card()
-
-            # keeps track of community card so as not to include in reshuffle
-            self.community_card = next_card.card_value
-
-            # put card onto the screen
-            self.place_sprite(next_card, 592, 283)
-
-        def give_player_new_cards(self, amount=0):
-            """ need to overlap cards every 20 pixels to make sure at least 50 fit on the top and bottom of the screen
-                might need to do something like, put them all in the same place, if touching move it 20 pixels until
-                nothing on the right hand side of the rect etc. """
-
-            next_card = self.get_next_card()
-
-            self.place_sprite(next_card, 5, 561)
-
-            # here we check for overlaps and implement logic to neatly distribute cards on player screen at the bottom
-
-            # if next_card.rect etc
-
-
-
+    def get_in_play_cards(self):
+        return self.in_play_cards
