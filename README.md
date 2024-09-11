@@ -15,7 +15,7 @@ Install pip:
 
 `sudo apt-get update`  
 
-`update sudo apt install pip`  
+`sudo apt install pip`  
 
 Install python3.12:  
 
