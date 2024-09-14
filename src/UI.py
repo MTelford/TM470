@@ -1,6 +1,6 @@
 import pygame
-from SpriteFactory import SpriteFactory
-from Card import Card
+from src.SpriteFactory import SpriteFactory
+from src.Card import Card
 
 
 class UI:

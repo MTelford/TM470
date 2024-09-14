@@ -1,10 +1,10 @@
 import sys
 import pygame
 from pygame.locals import *
-from UI import UI
-from EventHandler import EventHandler
-from Dealer import Dealer
-from Player import Player
+from src.UI import UI
+from src.EventHandler import EventHandler
+from src.Dealer import Dealer
+from src.Player import Player
 
 
 pygame.init()
