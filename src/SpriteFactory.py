@@ -1,7 +1,5 @@
 import pygame
 
-from Card import Card
-
 class SpriteFactory:
     def __init__(self):
         self.community_cards = pygame.sprite.Group()

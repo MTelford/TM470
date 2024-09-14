@@ -1,7 +1,5 @@
 import random
 
-from pygame.mouse import get_pos
-
 
 class Deck:
     def __init__(self):
